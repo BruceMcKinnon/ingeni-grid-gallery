@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Ingeni Grid Carousel
-Version: 2020.01
+Plugin Name: Ingeni Grid Gallery
+Version: 2020.02
 Plugin URI: http://ingeni.net
 Author: Bruce McKinnon - ingeni.net
 Author URI: http://ingeni.net
@@ -29,6 +29,8 @@ Requires : Wordpress 3.x or newer ,PHP 5 +
 
 v2020.01 - Initial version, based on Ingeni grid Gallery v2019.04
 
+v2020.02 - Support for the 'columns' parameter.
+
 */
 
 
@@ -55,19 +57,26 @@ function ingeni_grid_gallery_shortcode($atts, $content) {
 		'close_grid_container' => 1
 	), $atts );
 
+	$large_cell_class = "medium-6"; // Two medium/large columns
+	if ( $params['columns'] == "3" ) {
+		$large_cell_class = "medium-6 large-4";
+	}
+	if ( $params['columns'] == "4" ) {
+		$large_cell_class = "medium-4 large-3";
+	}
 
 	if ( $params['ids'] ) {
 		if ($params['close_grid_container'] > 0) {
 			$retHtml = '</div></div></div>';
 		}
-		$retHtml .= '<div class="grid-container full '.$params['container_class'].' grid-wrap"><div class="grid-x grid-margin-x">';
+		$retHtml .= '<div class="grid-container full '.$params['container_class'].' photo-grid-wrap"><div class="grid-x grid-margin-x">';
 
 		$imgIds = explode(",",$params['ids']);
 
 		foreach( $imgIds as $imgId ) {
 			$img_url = wp_get_attachment_image_src( $imgId, "large" );
 			if ($img_url !== false) {
-				$retHtml .= '<div class="cell small-12 medium-6">';
+				$retHtml .= '<div class="cell small-12 '.$large_cell_class.'">';
 				$retHtml .= '<div class="photo_grid_item" style="background-image: url('.$img_url[0].');"></div>';
 				$retHtml .= '</div>';
 			}

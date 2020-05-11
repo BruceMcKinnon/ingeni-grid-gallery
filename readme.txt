@@ -4,7 +4,7 @@ Contributors: Bruce McKinnon
 Tags: gallery, masonry
 Requires at least: 4.8
 Tested up to: 5.1.1
-Stable tag: 2020.01
+Stable tag: 2020.02
 
 Replaces standard Wordpress post galleries with Grid galleries.
 
@@ -50,4 +50,6 @@ container_class: Extra class that is applied to the container class.
 
 == Changelog ==
 
-v2019.01 - Initial version based on Ingeni Masonry Grid v2019.04
+v2020.01 - Initial version based on Ingeni Masonry Grid v2019.04
+
+v2020.02 - Support for the 'columns' parameter.
